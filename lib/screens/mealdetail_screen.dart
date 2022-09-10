@@ -1,9 +1,7 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
-import 'package:navigationproject/data/dummy_data.dart';
-import 'package:navigationproject/widgets/meal_item.dart';
 
+import '../data/dummy_data.dart';
 import '../models/meals.dart';
 
 class MealDetailScreen extends StatelessWidget {
@@ -35,12 +33,23 @@ class MealDetailScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
           Container(
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey)),
             height: 300,
             width: 200,
             child: ListView.builder(
               // ignore: deprecated_member_use
-              itemBuilder: (context, index) => 
-              Card(color: Theme.of(context).accentColor,child: Text(meal.title),),
+              itemBuilder: (context, index) => Card(
+                color: Theme.of(context).accentColor,
+                child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Text(meal.title)),
+              ),
               itemCount: meal.ingredients.length,
             ),
           ),
