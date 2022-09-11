@@ -5,21 +5,27 @@ import 'package:navigationproject/screens/mealdetail_screen.dart';
 class MealItem extends StatelessWidget {
   //const MealItem({ Key? key }) : super(key: key);
 
-  final String title, imageUrl,id;
+  final String title, imageUrl, id;
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  Function function;
 
   MealItem(
       {required this.affordability,
       required this.complexity,
       required this.id,
       required this.duration,
+      required this.function,
       required this.imageUrl,
       required this.title});
 //
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetailScreen.MealDetailsRoute ,arguments: id);
+    Navigator.of(context)
+        .pushNamed(MealDetailScreen.MealDetailsRoute, arguments: id)
+        .then((value) {
+      if (value != null) function(value);
+    });
   }
 
   String get getComplexity {
@@ -57,7 +63,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:()=> selectMeal(context),
+      onTap: () => selectMeal(context),
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

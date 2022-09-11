@@ -5,11 +5,11 @@ class MainDrawer extends StatelessWidget {
   //const MainDrawer({ Key? key }) : super(key: key);
 
   void openSettingsScreen(BuildContext context) {
-    Navigator.of(context).pushNamed('/');
+    Navigator.of(context).pushReplacementNamed('/');
   }
 
   void openFilterScreen(BuildContext context) {
-   Navigator.of(context).pushNamed(FilterScreen.routeName);
+   Navigator.of(context).pushReplacementNamed(FilterScreen.routeName);
 
   }
 
