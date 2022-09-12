@@ -6,9 +6,9 @@ import '../data/dummy_data.dart';
 class CategoryMealScreen extends StatefulWidget {
   //const CategoryMealScreen({Key? key}) : super(key: key);
 
-  // final String categoryId, categoryTitle;
+  List<Meal> mealList;
 
-  //  CategoryMealScreen(this.categoryId,this.categoryTitle);
+  CategoryMealScreen(this.mealList);
 
   static const CategoryScreen = '/catergory-meal';
 
@@ -19,14 +19,14 @@ class CategoryMealScreen extends StatefulWidget {
 class _CategoryMealScreenState extends State<CategoryMealScreen> {
   List<Meal> selectedMeal = [];
   String? categoryTitle;
-  
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
-@override
+
+  @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     final routeArgs =
@@ -35,18 +35,16 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
     //The id of the category of meals on the home screen
     final id = routeArgs['id'];
 
-    selectedMeal = DUMMY_MEALS.where((meals) {
+    selectedMeal = widget.mealList.where((meals) {
       return meals.categories.contains(id);
     }).toList();
 
     super.didChangeDependencies();
   }
 
-
   void deleteItem(String id) {
     setState(() {
-          selectedMeal.removeWhere((element) => element.id == id);
-
+      selectedMeal.removeWhere((element) => element.id == id);
     });
   }
 
@@ -64,10 +62,11 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
               duration: selectedMeal[index].duration,
               imageUrl: selectedMeal[index].imageUrl,
               title: selectedMeal[index].title,
-              function: deleteItem,
+              //function: deleteItem,
             );
           },
           itemCount: selectedMeal.length,
-        ));
+        ),
+        );
   }
 }

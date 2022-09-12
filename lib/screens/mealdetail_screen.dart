@@ -15,6 +15,10 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
+  var togglepreference;
+  var iconPreference;
+  MealDetailScreen(this.togglepreference, this.iconPreference);
+
   Widget buildContainer(Widget child) {
     return Container(
       margin: const EdgeInsets.all(10),
@@ -81,11 +85,8 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child:const Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(meal.id);
-        },
-      ),
+          child: iconPreference(id) ? const Icon(Icons.star):const Icon(Icons.star_border), 
+          onPressed:()=> togglepreference(id)),
     );
   }
 }
